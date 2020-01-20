@@ -1,8 +1,8 @@
 based on: https://github.com/Msalinas2877/tf-ep - credits to Msalinas2877
 
-                                  THIS IS A PROOF OF CONCEPT IS NOT MEAN TO BE USE
+                                THIS IS A PROOF OF CONCEPT IS NOT MEAN TO BE USE IN ANY OTHER MOD
 
-                  SOURCE 1 SDK LICENSE
+                                              SOURCE 1 SDK LICENSE
 
 Source SDK Copyright(c) Valve Corp.  
 
