@@ -1,16 +1,3 @@
-               Entropy : Zero
-
-This repository contains the code for the modification Entropy : Zero.
-https://store.steampowered.com/app/714070/Entropy__Zero/
-
-The manhack weapon was originally created by the Half-Life 2: Short Stories Team for Human Error and modified for Entropy : Zero. All other E:Z code changes were originally made by Breadman AKA John Richardson. They have been adapted with preprocessor directives "EZ" and "EZ1" to prevent conflicts with the original Source SDK 2013 code.
-
-To set up a mod for Entropy : Zero, run the batch script sp/src/createentropyzeroproject.bat. This will use VPC to generate your solution file, entropyzero.sln. (Visual Studio 2013 must be installed to use this project) 
-
-Compiled mod binaries will be placed in game/mod_ez1/bin. To install your E:Z mod, copy mod_ez1 to your Steam/SteamApps/sourcemods directory.
-
-Please see the Source SDK 2013 license below:
-
                SOURCE 1 SDK LICENSE
 
 Source SDK Copyright(c) Valve Corp.  
@@ -19,7 +6,7 @@ THIS DOCUMENT DESCRIBES A CONTRACT BETWEEN YOU AND VALVE
 CORPORATION ("Valve").  PLEASE READ IT BEFORE DOWNLOADING OR USING 
 THE SOURCE ENGINE SDK ("SDK"). BY DOWNLOADING AND/OR USING THE 
 SOURCE ENGINE SDK YOU ACCEPT THIS LICENSE. IF YOU DO NOT AGREE TO 
-THE TERMS OF THIS LICENSE PLEASE DON’T DOWNLOAD OR USE THE SDK.  
+THE TERMS OF THIS LICENSE PLEASE DONâ€™T DOWNLOAD OR USE THE SDK.  
 
   You may, free of charge, download and use the SDK to develop a modified Valve game 
 running on the Source engine.  You may distribute your modified Valve game in source and 
