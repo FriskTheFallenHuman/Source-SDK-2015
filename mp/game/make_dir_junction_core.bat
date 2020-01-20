@@ -12,7 +12,6 @@ if not exist "%TF2Dir%\hl2" (
 
 mklink /J "%cd%\hl2" "%TF2Dir%\hl2"
 echo.
-mklink /J "%cd%\tf" "%TF2Dir%\tf"
-echo.
 
-pause
+cls
+call make_dir_junction_hl2.bat
