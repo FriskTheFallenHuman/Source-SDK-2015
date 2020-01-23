@@ -22,12 +22,10 @@
 #include "gamestats.h"
 #include "tier0/vprof.h"
 #include "bone_setup.h"
-
+#include "datacache/imdlcache.h"
 #include "engine/IEngineSound.h"
 #include "SoundEmitterSystem/isoundemittersystembase.h"
-
 #include "obstacle_pushaway.h"
-
 #include "ilagcompensationmanager.h"
 
 // memdbgon must be the last include file in a .cpp file!!!
@@ -1529,7 +1527,15 @@ Vector CHL2MP_Player::GetAutoaimVector( float flScale )
 //-----------------------------------------------------------------------------
 void CHL2MP_Player::SetAnimation( PLAYER_ANIM playerAnim )
 {
-	return;
+	if ( playerAnim == PLAYER_WALK || playerAnim == PLAYER_IDLE ) 
+		return;
+
+    if ( playerAnim == PLAYER_RELOAD )
+        DoAnimationEvent( PLAYERANIMEVENT_RELOAD );
+    else if ( playerAnim == PLAYER_JUMP )
+        DoAnimationEvent( PLAYERANIMEVENT_JUMP );
+    else
+        Assert( !"CHL2MP_Player::SetAnimation OBSOLETE!" );
 }
 
 // -------------------------------------------------------------------------------- //

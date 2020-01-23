@@ -287,31 +287,7 @@ void CHL2MPClientScoreBoardDialog::UpdateTeamInfo()
 			const char *pDialogVarTeamScore = NULL;
 			const char *pDialogVarTeamPlayerCount = NULL;
 			const char *pDialogVarTeamPing = NULL;
-#if defined ( LUA_SDK )
-			wchar_t wgamemode[64];
-			const char *gamemode = NULL;
-			lua_getglobal( L, "_GAMEMODE" );
-			if ( lua_istable( L, -1 ) )
-			{
-				lua_getfield( L, -1, "Name" );
-				if ( lua_isstring( L, -1 ) )
-				{
-					lua_remove( L, -2 );
-					gamemode = lua_tostring( L, -1 );
-				}
-				else
-				{
-					lua_pop( L, 1 );
-					gamemode = "Half-Life 2: Sandbox";
-				}
-			}
-			else
-			{
-				gamemode = "Half-Life 2: Sandbox";
-			}
-			lua_pop( L, 1 );
-			g_pVGuiLocalize->ConvertANSIToUnicode( gamemode, wgamemode, sizeof( wgamemode ) );
-#endif
+
 			switch ( teamIndex ) 
 			{
 				case TEAM_REBELS:
@@ -327,11 +303,7 @@ void CHL2MPClientScoreBoardDialog::UpdateTeamInfo()
 					pDialogVarTeamPing = "c_teamping";
 					break;
 				case TEAM_UNASSIGNED:
-#if defined ( LUA_SDK )
-					teamName = wgamemode;
-#else
 					teamName = g_pVGuiLocalize->Find( "#HL2MP_ScoreBoard_DM" );
-#endif
 					pDialogVarTeamPlayerCount = "dm_playercount";
 					pDialogVarTeamPing = "dm_ping";
 					break;
