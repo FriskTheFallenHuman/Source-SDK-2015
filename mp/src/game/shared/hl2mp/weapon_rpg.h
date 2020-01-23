@@ -1,4 +1,4 @@
-//========= Copyright Valve Corporation, All rights reserved. ============//
+//========= Copyright © 1996-2005, Valve Corporation, All rights reserved. ============//
 //
 // Purpose: 
 //
@@ -70,6 +70,11 @@ public:
 
 	static CMissile *Create( const Vector &vecOrigin, const QAngle &vecAngles, edict_t *pentOwner );
 
+#ifdef HL2SB
+	static void AddCustomDetonator( CBaseEntity *pEntity, float radius, float height = -1 );
+	static void RemoveCustomDetonator( CBaseEntity *pEntity );
+#endif
+
 protected:
 	virtual void DoExplosion();	
 	virtual void ComputeActualDotPosition( CLaserDot *pLaserDot, Vector *pActualDotPosition, float *pHomingSpeed );
@@ -85,6 +90,17 @@ protected:
 	float					m_flAugerTime;		// Amount of time to auger before blowing up anyway
 	float					m_flMarkDeadTime;
 	float					m_flDamage;
+
+#ifdef HL2SB
+	struct CustomDetonator_t
+	{
+		EHANDLE hEntity;
+		float radiusSq;
+		float halfHeight;
+	};
+
+	static CUtlVector<CustomDetonator_t> gm_CustomDetonators;
+#endif
 
 private:
 	float					m_flGracePeriodEndsAt;
@@ -199,6 +215,14 @@ public:
 	float	GetMinRestTime() { return 4.0; }
 	float	GetMaxRestTime() { return 4.0; }
 
+#ifdef HL2SB
+#ifndef CLIENT_DLL
+	bool	WeaponLOSCondition( const Vector &ownerPos, const Vector &targetPos, bool bSetConditions );
+	int		WeaponRangeAttack1Condition( float flDot, float flDist );
+
+	void	Operator_HandleAnimEvent( animevent_t *pEvent, CBaseCombatCharacter *pOperator );
+#endif
+#endif
 	void	StartGuiding( void );
 	void	StopGuiding( void );
 	void	ToggleGuiding( void );
@@ -219,6 +243,18 @@ public:
 	void	SetNPCLaserPosition( const Vector &vecTarget );
 	const Vector &GetNPCLaserPosition( void );
 	
+#ifdef HL2SB
+#ifndef CLIENT_DLL
+	int		CapabilitiesGet( void ) { return bits_CAP_WEAPON_RANGE_ATTACK1; }
+
+	virtual const Vector& GetBulletSpread( void )
+	{
+		static Vector cone = VECTOR_CONE_3DEGREES;
+		return cone;
+	}
+#endif
+#endif
+
 #ifdef CLIENT_DLL
 
 	// We need to render opaque and translucent pieces
@@ -238,13 +274,14 @@ public:
 	CMaterialReference	m_hBeamMaterial;	// Used for the laser beam
 	Beam_t				*m_pBeam;			// Laser beam temp entity
 
+	//Tony; third person check thing, to destroy/reinitialize the beam ( swapping first -> third or back, etc )
+	virtual void			ThirdPersonSwitch( bool bThirdPerson );
+
 #endif	//CLIENT_DLL
 
 	CBaseEntity *GetMissile( void ) { return m_hMissile; }
 
-#ifndef CLIENT_DLL
 	DECLARE_ACTTABLE();
-#endif
 	
 protected:
 
@@ -256,6 +293,9 @@ protected:
 	CNetworkVar(	Vector,			m_vecLaserDot );
 
 #ifndef CLIENT_DLL
+#ifdef HL2SB
+	Vector				m_vecNPCLaserDot;
+#endif
 	CHandle<CLaserDot>	m_hLaserDot;
 #endif
 
