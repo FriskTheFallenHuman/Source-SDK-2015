@@ -888,7 +888,19 @@ Scheme
 				"antialias" "1"
 				"custom" "1" [$OSX]
 		   }
-		}	
+		}
+		//Tony; argh. the only reason this is here is for the goddamned skull icon.
+		"CSTypeDeath"
+		{
+		   "1"
+		   {
+				"name"  "csd" // csd.ttf
+				"tall"  "32"
+				"weight" "0"
+				"additive" "1"
+				"antialias" "1"
+		   }
+		}
 		// Used by scoreboard and spectator UI for names which don't map in the normal fashion
 		"DefaultVerySmallFallBack"
 		{
@@ -1578,6 +1590,7 @@ Scheme
 		"1"		"resource/HALFLIFE2.ttf"
 		"1"		"resource/HL2MP.ttf"
 		"2"		"resource/HL2crosshairs.ttf"
+		"3"		"resource/csd.ttf"
 	}
 
 }
