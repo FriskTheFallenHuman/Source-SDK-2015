@@ -13,11 +13,7 @@
 
 #include "convar.h"
 #include "multiplayer_animstate.h"
-
-#if defined( HL2SB )
 #include "base_playeranimstate.h"
-#endif
-
 #if defined( CLIENT_DLL )
 class C_HL2MP_Player;
 #define CHL2MP_Player C_HL2MP_Player
@@ -53,12 +49,9 @@ public:
 	bool	HandleSwimming( Activity &idealActivity );
 
 	virtual float GetCurrentMaxGroundSpeed();
-#ifdef HL2SB
-protected:
-	
-	CModAnimConfig		m_AnimConfig;
 
-#endif
+protected:
+	CModAnimConfig		m_AnimConfig;
 
 private:
 	//Tony; temp till 9way!
@@ -67,10 +60,7 @@ private:
 	virtual void				ComputePoseParam_MoveYaw( CStudioHdr *pStudioHdr );
 	virtual void				ComputePoseParam_AimPitch( CStudioHdr *pStudioHdr );
 	virtual void				ComputePoseParam_AimYaw( CStudioHdr *pStudioHdr );
-
-#ifdef HL2SB
 	void						ComputePlaybackRate();
-#endif
 	
 	CHL2MP_Player   *m_pHL2MPPlayer;
 	bool		m_bInAirWalk;

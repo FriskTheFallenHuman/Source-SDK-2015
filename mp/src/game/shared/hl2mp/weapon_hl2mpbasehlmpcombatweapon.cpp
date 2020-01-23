@@ -414,4 +414,3 @@ const WeaponProficiencyInfo_t *CBaseHL2MPCombatWeapon::GetDefaultProficiencyValu
 }
 
 #endif
-
