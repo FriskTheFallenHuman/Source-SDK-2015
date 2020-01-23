@@ -38,11 +38,12 @@ public:
 
 	CWeaponHL2MPBase();
 
-	#ifdef GAME_DLL
+#ifdef GAME_DLL
 		DECLARE_DATADESC();
 		void Materialize( void );
 		virtual	int	ObjectCaps( void );
-	#endif
+		virtual void	FallThink( void );						// make the weapon fall to the ground after spawning
+#endif
 
 	// All predicted weapons need to implement and return true
 	virtual bool	IsPredicted() const;
@@ -60,18 +61,18 @@ public:
 	virtual bool Reload();
 	
 public:
-	#if defined( CLIENT_DLL )
+#if defined( CLIENT_DLL )
 		
 		virtual bool	ShouldPredict();
 		virtual void	OnDataChanged( DataUpdateType_t type );
 
 		virtual bool	OnFireEvent( C_BaseViewModel *pViewModel, const Vector& origin, const QAngle& angles, int event, const char *options );
 
-	#else
+#else
 
 		virtual void	Spawn();
 
-	#endif
+#endif
 
 	float		m_flPrevAnimTime;
 	float  m_flNextResetCheckTime;
